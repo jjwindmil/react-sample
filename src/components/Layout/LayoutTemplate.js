@@ -30,7 +30,7 @@ function LayoutTemplate(props) {
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
                     <Menu.Item key="1" icon={<UserOutlined />}>
-                        nav 1
+                        수니랑 놀았던곳
                     </Menu.Item>
                     <Menu.Item key="2" icon={<VideoCameraOutlined />}>
                         nav 2
@@ -59,7 +59,7 @@ function LayoutTemplate(props) {
                 <Header className="site-layout-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
                     <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
-                        ...
+                        <h5>뭐가 먹고 싶어요!?You!!!!!!!!!!</h5>
                         <br />
                         Really
                         <br />
