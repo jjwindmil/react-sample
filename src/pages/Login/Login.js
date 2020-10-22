@@ -22,7 +22,11 @@ const tailLayout = {
     },
 };
 
-
+const loginStyle = {
+    position: "absolute",
+    top: "35%",
+    left: "40%",
+  }
 function Login(props) {
     const [loginSucess, setLoginSucess] = useState(false);
     const onFinish = values => {
@@ -34,9 +38,10 @@ function Login(props) {
         console.log('Failed:', errorInfo);
     };
 
-    if(loginSucess) return <Redirect to="/home"/>;
+    if(loginSucess) return <Redirect to="/homePage"/>;
 
     return (
+        <div style={loginStyle}>
         <Form
             {...layout}
             name="basic"
@@ -82,6 +87,7 @@ function Login(props) {
                 </Button>
             </Form.Item>
         </Form>
+        </div>
     );
 }
 
