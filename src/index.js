@@ -5,8 +5,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Root from "./components/Root";
 
+//createStore와 rootReducer 호출
+import {createStore } from 'redux';
+import {Provider } from 'react-redux';
+import rootReducer from './store/redux';
+
+
+const store = createStore(rootReducer);
+console.log(store.getState());
 ReactDOM.render(
-  <Root/>
+  <Provider store={store}>
+    <Root/>
+  </Provider>
   ,
   document.getElementById('root')
 );
