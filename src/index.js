@@ -9,9 +9,9 @@ import Root from "./components/Root";
 import {createStore } from 'redux';
 import {Provider } from 'react-redux';
 import rootReducer from './store/redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,composeWithDevTools());
 console.log(store.getState());
 ReactDOM.render(
   <Provider store={store}>
