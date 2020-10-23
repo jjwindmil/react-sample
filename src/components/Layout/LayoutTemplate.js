@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Layout, Menu } from 'antd';
@@ -19,40 +20,38 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const menuList = [
     {
-        key:1,
-        name: "Counter Sample",
-        icon: <UserOutlined/>,
-        link: "/counterPage",
+        key: 'counterpage',
+        name: 'Counter Sample',
+        icon: <UserOutlined />,
+        link: '/counterPage',
     },
     {
-        key:2,
-        name: "Express Sample",
-        icon: <AppstoreOutlined/>,
-        link: "/expressPage",
-        
+        key: 'expresspage',
+        name: 'Express Sample',
+        icon: <AppstoreOutlined />,
+        link: '/expressPage',
     },
     {
-        key:3,
-        name: "Redux Sample",
-        icon: <BarChartOutlined/>,
-        link: "/reduxPage",
+        key: 'reduxpage',
+        name: 'Redux Sample',
+        icon: <BarChartOutlined />,
+        link: '/reduxPage',
     },
     {
-        key:4,
-        name: "Redux Saga Sample",
-        icon: <CloudOutlined/>,
-        link: "/sagaPage",
+        key: 'sagapage',
+        name: 'Redux Saga Sample',
+        icon: <CloudOutlined />,
+        link: '/sagaPage',
     },
     {
-        key:5,
-        name: "Webworker Sample",
-        icon: <ShopOutlined/>,
-        link: "/webworkerPage",
+        key: 'webworkerpage',
+        name: 'Webworker Sample',
+        icon: <ShopOutlined />,
+        link: '/webworkerPage',
     },
-]
+];
 
-function LayoutTemplate({props}) {
-    console.log("Props" , props);
+function LayoutTemplate({ props }) {
     return (
         <Layout>
             <Sider
@@ -65,25 +64,54 @@ function LayoutTemplate({props}) {
             >
                 <div className="logo" />
 
-                <Menu theme="dark" mode="inline">
-                {
-                    menuList.map((menu)=>{
-                        return <Menu.Item key={menu.key} icon={menu.icon} ><Link to={menu.link}>{menu.name}</Link></Menu.Item>
-                    })
-                }
+                <Menu
+                    theme="dark"
+                    mode="inline"
+                    onClick={({ item, key, keyPath, domEvent }) => {
+                        console.log(
+                            'Menu Item Click',
+                            'item: ',
+                            item,
+                            'key:',
+                            key,
+                            'keyPath:',
+                            keyPath,
+                            domEvent
+                        );
+                        const menu = menuList.find((menu) => {
+                            return menu.key === key;
+                        });
+                        console.log('Menu : ', menu.link);
+                        return () => <Link to={menu.link}></Link>;
+                    }}
+                >
+                    {menuList.map((menu) => {
+                        return (
+                            <Menu.Item key={menu.key} icon={menu.icon}>
+                                <NavLink to={menu.link}>{menu.name}</NavLink>;
+                            </Menu.Item>
+                        );
+                    })}
                 </Menu>
             </Sider>
-            
+
             <Layout className="site-layout" style={{ marginLeft: 200 }}>
-                <Header className="site-layout-background" style={{ padding: 0 }} />
+                <Header
+                    className="site-layout-background"
+                    style={{ padding: 0 }}
+                />
                 <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-                    <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
+                    <div
+                        className="site-layout-background"
+                        style={{ padding: 24, textAlign: 'center' }}
+                    >
                         {props}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center' }}>
+                    Ant Design ©2018 Created by Ant UED
+                </Footer>
             </Layout>
-            
         </Layout>
     );
 }

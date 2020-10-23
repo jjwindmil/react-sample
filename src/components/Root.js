@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import {
     HomePage,
-    Test01,
     Login,
     Counter,
     ConnectCounterContainer,
@@ -22,8 +21,6 @@ function Root(props) {
             <Route path="/homePage" component={HomePage}></Route>
             <Switch>
                 <Route exact path="/" component={Login}></Route>
-                <Route path="/test01" component={Test01}></Route>
-
                 <Route
                     path="/connCounter"
                     component={ConnectCounterContainer}
