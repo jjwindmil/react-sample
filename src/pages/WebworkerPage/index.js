@@ -1,1 +1,1 @@
-export {default} from './WebworkerPage';
+export { default } from './WebworkerPage';

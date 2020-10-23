@@ -1,1 +1,1 @@
-export {default} from './ExpressPage';
+export { default } from './ExpressPage';

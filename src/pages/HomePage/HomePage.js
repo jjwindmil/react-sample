@@ -1,10 +1,11 @@
 import React from 'react';
-import LayoutTemplate from "../../components/Layout/LayoutTemplate";
-import "./Home.scss"
+import { useSelector } from 'react-redux';
+import LayoutTemplate from '../../components/Layout/LayoutTemplate';
+import './Home.scss';
 function HomePage(props) {
-    return (
-        <LayoutTemplate props={<div>Welcome</div>}></LayoutTemplate>
-    );
+    const loginInfo = useSelector((state) => state.login);
+    console.log('Home Page : ', loginInfo);
+    return <LayoutTemplate props={<div>Welcome</div>}></LayoutTemplate>;
 }
 
 export default HomePage;

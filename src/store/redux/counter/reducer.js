@@ -1,25 +1,25 @@
-import { INCREMENT, DECREMENT } from "./actions";
+import { INCREMENT, DECREMENT } from './actions';
 
 const initialState = {
-    number : 0
+    number: 0,
 };
 
-export default function counter(state=initialState, action) {
+export default function counter(state = initialState, action) {
     console.log(action);
-    switch(action.type) {
-        case INCREMENT :
+    switch (action.type) {
+        case INCREMENT:
             return {
                 ...state,
-                number:state.number+1,
+                number: state.number + 1,
             };
-        case DECREMENT :
+        case DECREMENT:
             return {
                 ...state,
-                number:state.number-1,
+                number: state.number - 1,
             };
-        default :
+        default:
             return {
-                ...state
-            }
+                ...state,
+            };
     }
 }

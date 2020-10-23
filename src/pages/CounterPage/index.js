@@ -1,1 +1,1 @@
-export {default} from './CounterPage';
+export { default } from './CounterPage';

@@ -1,1 +1,1 @@
-export {default} from './SagaPage';
+export { default } from './SagaPage';

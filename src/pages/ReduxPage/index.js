@@ -1,1 +1,1 @@
-export {default} from './ReduxPage';
+export { default } from './ReduxPage';
