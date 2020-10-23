@@ -1,9 +1,10 @@
 import { handleActions } from 'redux-actions';
-import { LOGIN, TEST } from './actions';
+import { LOGIN, LOGIN_SUCCESS, TEST } from './actions';
 const initialState = {
     name: undefined,
     pass: undefined,
     test: undefined,
+    result: false,
 };
 
 const login = handleActions(
@@ -18,13 +19,11 @@ const login = handleActions(
             return { name: action.payload.name, pass: action.payload.pass };
         },
         [TEST]: (state, action) => {
-            console.log(
-                'Test Reducer : ',
-                state,
-                action.payload.name,
-                action.payload.pass
-            );
             return { test: action.payload.name };
+        },
+        [LOGIN_SUCCESS]: (state, action) => {
+            console.log('Login Reducer : ', state, action.payload.result);
+            return { result: action.payload.result };
         },
     },
     initialState

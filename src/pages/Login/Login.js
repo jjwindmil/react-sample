@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from 'store/redux/login/actions';
+import { isOrdered } from 'immutable';
 
 const layout = {
     labelCol: {
@@ -28,22 +29,29 @@ const loginStyle = {
 };
 function Login(props) {
     const [loginSucess, setLoginSucess] = useState(false);
-    //const loginInfo = useSelector((state) => state.login);
-    //console.log(loginInfo);
+    const loginInfo = useSelector((state) => state.login);
     const dispatch = useDispatch();
 
     const onFinish = (values) => {
-        console.log('Success:', values);
         dispatch(login({ name: values.username, pass: values.password }));
-        setLoginSucess(true);
+        //setLoginSucess(true);
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+    useEffect(() => {
+        console.log(loginInfo.result);
+        if (loginInfo.result === 'success') {
+            setLoginSucess(true);
+        } else {
+            setLoginSucess(false);
+        }
+    }, [loginInfo]);
 
-    //if (loginSucess) return <Redirect to="/homePage" />;
-
+    if (loginSucess) {
+        return <Redirect to="/homePage" />;
+    }
     return (
         <div style={loginStyle}>
             <Form

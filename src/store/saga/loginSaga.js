@@ -1,5 +1,6 @@
-import { delay, call } from 'redux-saga/effects';
+import { delay, call, put } from 'redux-saga/effects';
 import axios from 'axios';
+import { loginSucess } from 'store/redux/login/actions';
 function getLoginRequest(loginReq) {
     /*
     return axios
@@ -23,7 +24,8 @@ function getLoginRequest(loginReq) {
             pass: loginReq.pass,
         })
         .then(function (response) {
-            console.log(response);
+            console.log(response.data);
+            return response.data;
         })
         .catch(function (error) {
             console.log(error);
@@ -39,6 +41,6 @@ export function* loginRequest(param) {
         name: param.payload.name,
         pass: param.payload.pass,
     };
-    yield call(getLoginRequest, loginParam);
-    console.log('loginRequest');
+    const loginResult = yield call(getLoginRequest, loginParam);
+    yield put(loginSucess(loginResult));
 }
